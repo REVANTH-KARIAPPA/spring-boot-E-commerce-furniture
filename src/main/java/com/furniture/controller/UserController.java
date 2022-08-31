@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -52,15 +52,21 @@ public class UserController {
 
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @RequestMapping(value="/adminping", method = RequestMethod.GET)
+    @RequestMapping(value="/admin", method = RequestMethod.GET)
     public String adminPing(){
         return "Only Admins Can Read This";
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    @RequestMapping(value="/userping", method = RequestMethod.GET)
-    public String userPing(){
+    @PreAuthorize("hasAnyRole('ADMIN','CUSTOMER')")
+    @RequestMapping(value="/customer", method = RequestMethod.GET)
+    public String coustomerPing(){
         return "Any User Can Read This";
+    }
+
+    @PreAuthorize("hasAnyRole('SELLER')")
+    @RequestMapping(value="/seller", method = RequestMethod.GET)
+    public String sellerPing(){
+        return "Only User Can Read This";
     }
 
 }
