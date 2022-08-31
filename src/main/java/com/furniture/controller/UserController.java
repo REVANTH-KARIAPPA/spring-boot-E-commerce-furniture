@@ -66,7 +66,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('SELLER')")
     @RequestMapping(value="/seller", method = RequestMethod.GET)
     public String sellerPing(){
-        return "Only User Can Read This";
+        return "Only seller Can Read This";
     }
 
 }
