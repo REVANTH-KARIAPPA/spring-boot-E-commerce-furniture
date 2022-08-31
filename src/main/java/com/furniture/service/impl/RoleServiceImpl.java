@@ -1,8 +1,8 @@
-package com.akhianand.springrolejwt.service.impl;
+package com.furniture.service.impl;
 
-import com.akhianand.springrolejwt.dao.RoleDao;
-import com.akhianand.springrolejwt.model.Role;
-import com.akhianand.springrolejwt.service.RoleService;
+import com.furniture.dao.RoleDao;
+import com.furniture.model.Role;
+import com.furniture.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

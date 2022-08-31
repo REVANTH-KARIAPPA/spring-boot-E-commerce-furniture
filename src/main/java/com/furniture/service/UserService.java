@@ -1,7 +1,7 @@
-package com.akhianand.springrolejwt.service;
+package com.furniture.service;
 
-import com.akhianand.springrolejwt.model.User;
-import com.akhianand.springrolejwt.model.UserDto;
+import com.furniture.model.User;
+import com.furniture.model.UserDto;
 
 import java.util.List;
 

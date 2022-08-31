@@ -1,4 +1,4 @@
-package com.akhianand.springrolejwt.model;
+package com.furniture.model;
 
 import javax.persistence.*;
 

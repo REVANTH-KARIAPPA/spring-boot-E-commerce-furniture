@@ -1,11 +1,11 @@
-package com.akhianand.springrolejwt.controller;
+package com.furniture.controller;
 
-import com.akhianand.springrolejwt.config.TokenProvider;
-import com.akhianand.springrolejwt.model.AuthToken;
-import com.akhianand.springrolejwt.model.LoginUser;
-import com.akhianand.springrolejwt.model.User;
-import com.akhianand.springrolejwt.model.UserDto;
-import com.akhianand.springrolejwt.service.UserService;
+import com.furniture.config.TokenProvider;
+import com.furniture.model.AuthToken;
+import com.furniture.model.LoginUser;
+import com.furniture.model.User;
+import com.furniture.model.UserDto;
+import com.furniture.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,8 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

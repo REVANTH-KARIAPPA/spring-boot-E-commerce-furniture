@@ -1,15 +1,15 @@
-package com.akhianand.springrolejwt.service.impl;
+package com.furniture.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import com.akhianand.springrolejwt.dao.UserDao;
-import com.akhianand.springrolejwt.model.Role;
-import com.akhianand.springrolejwt.model.User;
-import com.akhianand.springrolejwt.model.UserDto;
-import com.akhianand.springrolejwt.service.RoleService;
-import com.akhianand.springrolejwt.service.UserService;
+import com.furniture.dao.UserDao;
+import com.furniture.model.Role;
+import com.furniture.model.User;
+import com.furniture.model.UserDto;
+import com.furniture.service.RoleService;
+import com.furniture.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

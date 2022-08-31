@@ -1,52 +1,14 @@
-package com.akhianand.springrolejwt.model;
+package com.furniture.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
-import java.util.Set;
-
-@Entity
-@Table(name="users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long id;
-
-    @Column
+public class UserDto {
+    
     private String username;
-
-    @Column
-    @JsonIgnore
     private String password;
-
-    @Column
     private String email;
-
-    @Column
     private String phone;
-
-    @Column
     private String name;
-
-    @Column
     private String businessTitle;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "USER_ROLES",
-            joinColumns = {
-            @JoinColumn(name = "USER_ID")
-            },
-            inverseJoinColumns = {
-            @JoinColumn(name = "ROLE_ID") })
-    private Set<Role> roles;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -96,11 +58,16 @@ public class User {
         this.businessTitle = businessTitle;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public User getUserFromDto(){
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setName(name);
+        user.setBusinessTitle(businessTitle);
+        
+        return user;
     }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+    
 }
