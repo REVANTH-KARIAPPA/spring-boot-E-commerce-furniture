@@ -7,7 +7,7 @@ public class UserDto {
     private String email;
     private String phone;
     private String name;
-    private String businessTitle;
+
 
 
     public String getUsername() {
@@ -50,13 +50,6 @@ public class UserDto {
         this.name = name;
     }
 
-    public String getBusinessTitle() {
-        return businessTitle;
-    }
-
-    public void setBusinessTitle(String businessTitle) {
-        this.businessTitle = businessTitle;
-    }
 
     public User getUserFromDto(){
         User user = new User();
@@ -65,7 +58,7 @@ public class UserDto {
         user.setEmail(email);
         user.setPhone(phone);
         user.setName(name);
-        user.setBusinessTitle(businessTitle);
+
         
         return user;
     }

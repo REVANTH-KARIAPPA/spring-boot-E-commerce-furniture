@@ -1,10 +1,9 @@
 package com.furniture.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import com.furniture.dao.UserDao;
+import java.util.*;
+
+import com.furniture.Repository.UserRepository;
+import com.furniture.exception.UserNameException;
 import com.furniture.model.Role;
 import com.furniture.model.User;
 import com.furniture.model.UserDto;
@@ -25,13 +24,13 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private RoleService roleService;
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+        User user = userRepository.findByUsername(username);
         if(user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
@@ -48,31 +47,40 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     public List<User> findAll() {
         List<User> list = new ArrayList<>();
-        userDao.findAll().iterator().forEachRemaining(list::add);
+        userRepository.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
 
     @Override
     public User findOne(String username) {
-        return userDao.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
     @Override
     public User save(UserDto user) {
+       Optional<User>  u= Optional.ofNullable(userRepository.findByUsername(user.getUsername()));
+        if(!u.isPresent()) {
+            User nUser = user.getUserFromDto();
+            nUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 
-        User nUser = user.getUserFromDto();
-        nUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-
-        Role role = roleService.findByName("USER");
-        Set<Role> roleSet = new HashSet<>();
-        roleSet.add(role);
-
-        if(nUser.getEmail().split("@")[1].equals("admin.edu")){
-            role = roleService.findByName("ADMIN");
+            Role role = roleService.findByName("CUSTOMER");
+            Set<Role> roleSet = new HashSet<>();
             roleSet.add(role);
-        }
 
-        nUser.setRoles(roleSet);
-        return userDao.save(nUser);
+            if (nUser.getEmail().split("@")[1].equals("admin.com")) {
+                role = roleService.findByName("ADMIN");
+                roleSet.add(role);
+            }
+            if (nUser.getEmail().split("@")[1].equals("seller.com")) {
+                role = roleService.findByName("SELLER");
+                roleSet.add(role);
+            }
+
+            nUser.setRoles(roleSet);
+            return userRepository.save(nUser);
+        }
+        else {
+            throw new UserNameException("UserName is Taken");
+        }
     }
 }

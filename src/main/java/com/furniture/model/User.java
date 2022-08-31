@@ -12,7 +12,7 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    @Column
+
     private String username;
 
     @Column
@@ -28,8 +28,7 @@ public class User {
     @Column
     private String name;
 
-    @Column
-    private String businessTitle;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES",
@@ -88,13 +87,6 @@ public class User {
         this.name = name;
     }
 
-    public String getBusinessTitle() {
-        return businessTitle;
-    }
-
-    public void setBusinessTitle(String businessTitle) {
-        this.businessTitle = businessTitle;
-    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -103,4 +95,6 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+
 }

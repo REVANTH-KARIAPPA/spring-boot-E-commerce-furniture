@@ -1,10 +1,11 @@
-package com.furniture.dao;
+package com.furniture.Repository;
 
 import com.furniture.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleDao extends CrudRepository<Role, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
     Role findRoleByName(String name);
 }
