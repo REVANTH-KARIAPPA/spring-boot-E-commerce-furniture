@@ -3,6 +3,7 @@ package com.furniture.controller;
 import com.furniture.model.Category;
 import com.furniture.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,8 @@ public class CategoryController {
         categoryService.deleteCategory(id);
     }
 
+
+    @PreAuthorize("hasAnyRole('ADMIN','SELLER')")
     @PutMapping("/{categoryId}/product/{productId}")
     public void enrollCategory(@PathVariable int categoryId, @PathVariable int productId){
         categoryService.enrollCategory(categoryId,productId);
