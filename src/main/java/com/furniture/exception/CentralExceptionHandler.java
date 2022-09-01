@@ -20,4 +20,21 @@ public class CentralExceptionHandler {
         return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<String> exceptionHandler(ProductNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(CartNotFoundException.class)
+    public ResponseEntity<String> exceptionHandler(CartNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<String> exceptionHandler(CategoryNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<String> exceptionHandler(OrderNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 }

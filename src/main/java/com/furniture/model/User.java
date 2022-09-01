@@ -1,10 +1,14 @@
 package com.furniture.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name="users")
 public class User {
 
@@ -95,6 +99,23 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+    @OneToOne
+
+    private Cart cart;
+
+
+    @OneToMany
+
+    private List<Order> orders;
+
+    public void addOrders(Order o) {
+        this.orders.add(o);
+    }
+    public void removeOrders(Order o){
+        this.orders.remove(o);
+    }
 
 
 }
+
+
