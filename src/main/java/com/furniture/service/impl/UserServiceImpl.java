@@ -4,6 +4,7 @@ import java.util.*;
 
 import com.furniture.Repository.UserRepository;
 import com.furniture.exception.UserNameException;
+import com.furniture.exception.UserNotFoundException;
 import com.furniture.model.Role;
 import com.furniture.model.User;
 import com.furniture.model.UserDto;
@@ -82,5 +83,34 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         else {
             throw new UserNameException("UserName is Taken");
         }
+    }
+
+
+    // my services
+    public List<User> getAllUsers(){
+        return new ArrayList<>(userRepository.findAll());
+    }
+    public User getUserById(long id){
+        Optional<User> users=userRepository.findById(id);
+        if(users.isPresent()){
+
+            return userRepository.findById(id).get();
+        }
+        else{
+            throw new UserNotFoundException("Get Operation failed \n No User Found with id : "+id);
+        }
+    }
+    public void deleteUser(long id)
+    {
+        Optional<User> users=userRepository.findById(id);
+        if(users.isPresent()){
+            userRepository.deleteById(id);
+        }
+        else{
+            throw new UserNotFoundException("Delete Operation failed \n No User Found with id : "+id);
+        }
+    }
+    public void createUser(User user){
+        userRepository.save(user);
     }
 }
