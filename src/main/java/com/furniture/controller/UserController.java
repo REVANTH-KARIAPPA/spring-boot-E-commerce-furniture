@@ -63,7 +63,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN','CUSTOMER')")
     @RequestMapping(value="/customer", method = RequestMethod.GET)
     public String coustomerPing(){
-        return "Any User Can Read This";
+        return "Any coustomer Can Read This";
     }
 
     @PreAuthorize("hasAnyRole('SELLER')")
