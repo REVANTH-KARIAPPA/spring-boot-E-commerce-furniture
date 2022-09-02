@@ -2,6 +2,7 @@ package com.furniture.service;
 
 import com.furniture.model.User;
 import com.furniture.model.UserDto;
+import com.furniture.model.UserInfo;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface UserService {
 
 
     void deleteUser(long id);
+
+    UserInfo getUserByName(String username);
 }

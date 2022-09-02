@@ -2,12 +2,11 @@ package com.furniture.service.impl;
 
 import java.util.*;
 
+import com.furniture.Repository.CartRepository;
 import com.furniture.Repository.UserRepository;
 import com.furniture.exception.UserNameException;
 import com.furniture.exception.UserNotFoundException;
-import com.furniture.model.Role;
-import com.furniture.model.User;
-import com.furniture.model.UserDto;
+import com.furniture.model.*;
 import com.furniture.service.RoleService;
 import com.furniture.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private RoleService roleService;
 
     @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -36,6 +38,27 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
+    }
+
+    //MY methord for authentication
+    public UserInfo getUserByName(String name) throws UsernameNotFoundException{
+
+        User user = userRepository.findByUsername(name);
+        if(user == null){
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+        long id = user.getId();
+        String s=String.valueOf(id);
+
+        Set <Role> p=user.getRoles();
+        List<String>roles = new ArrayList<>();
+
+        for (Role x : p) {
+            roles.add(x.getName());
+        }
+        UserInfo userInfo=new UserInfo(s,user.getUsername(),user.getEmail(),roles);
+
+        return userInfo;
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
@@ -67,6 +90,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             Role role = roleService.findByName("CUSTOMER");
             Set<Role> roleSet = new HashSet<>();
             roleSet.add(role);
+            Cart cart= new Cart();
+            cartRepository.save(cart);
 
             if (nUser.getEmail().split("@")[1].equals("admin.com")) {
                 role = roleService.findByName("ADMIN");
@@ -78,6 +103,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             }
 
             nUser.setRoles(roleSet);
+            nUser.setCart(cart);
             return userRepository.save(nUser);
         }
         else {

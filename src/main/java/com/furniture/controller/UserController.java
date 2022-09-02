@@ -1,7 +1,7 @@
 package com.furniture.controller;
 
 import com.furniture.config.TokenProvider;
-import com.furniture.model.AuthToken;
+import com.furniture.model.JwtAuthenticationResponse;
 import com.furniture.model.LoginUser;
 import com.furniture.model.User;
 import com.furniture.model.UserDto;
@@ -44,7 +44,7 @@ public class UserController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(authentication);
-        return ResponseEntity.ok(new AuthToken(token));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token,userService.getUserByName(loginUser.getUsername())));
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
