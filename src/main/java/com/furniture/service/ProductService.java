@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -94,9 +96,33 @@ public class ProductService {
         productRepository.save(product);
 
 
+    }
+
+    public void approveProduct(Integer id) {
+        Optional<Product> p= productRepository.findById(id);
+        if(p.isPresent()){
+            Product product=productRepository.findById(id).get();
+            product.setApproved(true);
+            productRepository.save(product);
+
+        }
+        else {
+            throw new ProductNotFoundException("User with UserId "+id+" is not found");
+        }
+    }
 
 
+    public List<Product> approvedProducts() {
 
+        List<Product> products= productRepository.findAll();
 
+        return products.stream().filter(product -> product.getApproved()==true).collect(Collectors.toList());
+    }
+
+    public List<Product> notApprovedProduct() {
+
+        List<Product> products= productRepository.findAll();
+
+        return products.stream().filter(product -> product.getApproved()!=true).collect(Collectors.toList());
     }
 }

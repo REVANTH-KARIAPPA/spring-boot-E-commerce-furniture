@@ -2,6 +2,7 @@ package com.furniture.controller;
 
 import com.furniture.model.Product;
 import com.furniture.service.ProductService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,25 @@ public class ProductController {
         productService.createProduct(product);
 
     }
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PutMapping("/approve/{id}")
+    public void approveProduct(@PathVariable Integer id) {
+        productService.approveProduct(id);
+
+    }
+    @PreAuthorize("hasAnyRole('ADMIN','SELLER','CUSTOMER')")
+    @GetMapping("/approved")
+    public List<Product> approvedProducts() {
+        return productService.approvedProducts();
+
+    }
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/not-approved")
+    public List<Product> notApprovedProducts() {
+       return  productService.notApprovedProduct();
+
+    }
+
 
 
 

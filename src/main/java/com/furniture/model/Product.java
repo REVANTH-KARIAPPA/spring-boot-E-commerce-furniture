@@ -29,7 +29,7 @@ public class  Product {
 
 
 
-
+    private Boolean approved=false;
 
 
 
