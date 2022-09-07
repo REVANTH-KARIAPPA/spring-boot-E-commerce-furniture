@@ -1,11 +1,15 @@
 package com.furniture.controller;
 
 import com.furniture.model.Cart;
+import com.furniture.model.Product;
 import com.furniture.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/cart")
@@ -31,8 +35,9 @@ public class CartController {
     }
 
     @PutMapping("/{cartId}/product/{productId}")
-    public void enrollCategory(@PathVariable int cartId, @PathVariable int productId){
+    public String enrollCategory(@PathVariable int cartId, @PathVariable int productId){
         cartService.enrollCart(cartId,productId);
+        return "product added to cart";
 
     }
     @PutMapping("/{cartId}/user/{userId}")
@@ -41,9 +46,15 @@ public class CartController {
 
     }
     @PutMapping("/{cartId}/rep/{productId}")
-    public void removeProduct(@PathVariable int cartId, @PathVariable int productId){
+    public ResponseEntity<String> removeProduct(@PathVariable int cartId, @PathVariable int productId){
         cartService.removeProduct(cartId,productId);
+        return new ResponseEntity<>("Product Deleted Successfully", HttpStatus.OK);
 
+    }
+    @GetMapping("/{userId}")
+    public Set<Product> getProductsInCart(@PathVariable long userId){
+
+        return cartService.getProdutsInCart(userId);
     }
 
 }

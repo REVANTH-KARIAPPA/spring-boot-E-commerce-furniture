@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -54,6 +55,13 @@ public class ProductController {
        return  productService.notApprovedProduct();
 
     }
+
+    @DeleteMapping("/{pid}")
+    public void deleteProduct(@PathVariable Integer pid){
+        productService.deleteProduct(pid);
+    }
+
+
 
 
 

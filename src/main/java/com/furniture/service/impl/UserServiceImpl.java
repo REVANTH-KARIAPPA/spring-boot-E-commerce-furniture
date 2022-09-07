@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         for (Role x : p) {
             roles.add(x.getName());
         }
-        UserInfo userInfo=new UserInfo(s,user.getUsername(),user.getEmail(),roles);
+        UserInfo userInfo=new UserInfo(s,user.getUsername(),user.getEmail(),roles,user.getCart());
 
         return userInfo;
     }

@@ -3,6 +3,8 @@ package com.furniture.service;
 import com.furniture.Repository.CartRepository;
 import com.furniture.Repository.ProductRepository;
 import com.furniture.Repository.UserRepository;
+import com.furniture.exception.UserNameException;
+import com.furniture.exception.UserNotFoundException;
 import com.furniture.model.Cart;
 import com.furniture.model.Product;
 import com.furniture.model.User;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CartService {
@@ -59,5 +63,19 @@ public class CartService {
         cart.getProducts().remove(product);
         cartRepository.save(cart);
 
+    }
+
+    public Set<Product> getProdutsInCart(long userId) {
+        Optional<User> user= (userRepository.findById(userId));
+        if(user.isPresent()) {
+            User u=user.get();
+            Cart c=u.getCart();
+            int cId=c.getCartId();
+            Set<Product> products=c.getProducts();
+            return  products;
+        }
+        else {
+            throw new UserNotFoundException("User "+userId+" is not found");
+        }
     }
 }

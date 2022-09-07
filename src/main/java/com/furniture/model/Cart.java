@@ -15,9 +15,7 @@ public class Cart {
     private int cartId;
     private int cartTotal;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "cart")
-    private User user;
+
 
 
     @ManyToMany

@@ -1,11 +1,14 @@
 package com.furniture.controller;
 
 import com.furniture.model.Orders;
+import com.furniture.model.Product;
 import com.furniture.service.OrderService;
+import com.furniture.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/order")
@@ -14,6 +17,9 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    ProductService productService;
 
     @GetMapping("/all")
     public List<Orders> getAllOrders() {
@@ -43,6 +49,10 @@ public class OrderController {
     public void addUser(@PathVariable int orderId, @PathVariable int userId){
         orderService.addUser(orderId,userId);
 
+    }
+    @PostMapping("/{userId}/products")
+    public void addOrderProduct(@PathVariable Long userId, @RequestBody Set<Product> products){
+        productService.addOrderProduct(userId,products);
     }
 
 
