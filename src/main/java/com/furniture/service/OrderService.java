@@ -3,6 +3,7 @@ package com.furniture.service;
 import com.furniture.Repository.OrderRepository;
 import com.furniture.Repository.ProductRepository;
 import com.furniture.Repository.UserRepository;
+import com.furniture.exception.OrderNotFoundException;
 import com.furniture.model.Orders;
 import com.furniture.model.Product;
 import com.furniture.model.User;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class  OrderService {
@@ -58,5 +60,18 @@ public class  OrderService {
 
 
         return orders;
+    }
+
+    public Orders getOrderById(int oId) {
+
+        Optional<Orders> orders= orderRepository.findById(oId);
+        if(orders.isPresent()){
+            Orders o=orderRepository.findById(oId).get();
+            return o;
+        }
+        else {
+            throw new OrderNotFoundException("order not found");
+        }
+
     }
 }

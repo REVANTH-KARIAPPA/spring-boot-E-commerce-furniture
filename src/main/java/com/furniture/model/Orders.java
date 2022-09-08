@@ -13,6 +13,10 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
     private int orderTotal;
+    private boolean status=false;
+
+    @OneToOne
+    private Payment payment;
 
     @ManyToMany
     @JoinTable(name ="ordered_products",
@@ -35,5 +39,13 @@ public class Orders {
     public void putProduct(Product product) {
         orderTotal=orderTotal+product.getPrize();
         products.add(product);
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
