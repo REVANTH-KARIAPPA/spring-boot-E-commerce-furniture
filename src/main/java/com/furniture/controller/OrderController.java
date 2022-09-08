@@ -4,6 +4,7 @@ import com.furniture.model.Orders;
 import com.furniture.model.Product;
 import com.furniture.service.OrderService;
 import com.furniture.service.ProductService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +55,12 @@ public class OrderController {
     public void addOrderProduct(@PathVariable Long userId, @RequestBody Set<Product> products){
         productService.addOrderProduct(userId,products);
     }
+    @GetMapping("/id/{oId}")
+    public Orders getOrderById(@PathVariable int oId){
+
+        return orderService.getOrderById(oId);
+    }
+
 
 
 

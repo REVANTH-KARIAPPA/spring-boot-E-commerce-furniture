@@ -2,10 +2,7 @@ package com.furniture.service;
 
 import com.furniture.Repository.*;
 import com.furniture.exception.ProductNotFoundException;
-import com.furniture.model.Cart;
-import com.furniture.model.Orders;
-import com.furniture.model.Product;
-import com.furniture.model.User;
+import com.furniture.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +26,10 @@ public class ProductService {
     CategoryRepository categoryRepository;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    PaymentService paymentService;
+    @Autowired
+    PaymentRepository paymentRepository;
 
     public void updateProduct(Product product, int id){
         Product optionalProduct= getProductById(id);
@@ -73,12 +74,18 @@ public class ProductService {
 
             User myUser=userRepository.findById(userId).get();
             Orders orders=new Orders();
+            Payment payment=new Payment();
+            paymentRepository.save(payment);
             orders.setUsers(myUser);
             orders.setProducts(products);
+            orders.setPayment(payment);
             orderRepository.save(orders);
 
             myUser.addOrders(orders);
             userRepository.save(myUser);
+            paymentRepository.save(payment);
+
+
 
             Cart cart=  myUser.getCart();
             cart.clearProducts();

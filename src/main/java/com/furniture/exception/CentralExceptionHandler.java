@@ -35,5 +35,10 @@ public class CentralExceptionHandler {
     public ResponseEntity<String> exceptionHandler(OrderNotFoundException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(PaymentNotFoundException.class)
+    public ResponseEntity<String> exceptionHandler(PaymentNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 
 }
