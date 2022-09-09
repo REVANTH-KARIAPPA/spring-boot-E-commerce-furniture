@@ -3,6 +3,7 @@ package com.furniture.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.furniture.Repository.OrderRepository;
 import com.furniture.model.Orders;
 import com.furniture.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,23 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Autowired
 	private PaymentRepository paymentRepo;
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Override
-	public Payment addPayment(Payment payment,int pid) {
+	public Payment addPayment(Payment payment,int pid,int orderId) {
 		Optional<Payment> p =(paymentRepo.findById(pid));
+		Optional<Orders> o =(orderRepository.findById(orderId));
 		if(p.isPresent()){
           Payment p1=p.get();
+		  Orders orders=o.get();
           p1.setPaymentAmount(payment.getPaymentAmount());
           p1.setEmail((payment.getEmail()));
           p1.setMethod((payment.getMethod()));
+
+
+		  orders.setStatus(true);
+		  orderRepository.save(orders);
 
           return this.paymentRepo.save(p1);
 

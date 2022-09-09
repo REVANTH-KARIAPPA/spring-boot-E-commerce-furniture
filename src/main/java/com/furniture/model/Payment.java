@@ -4,6 +4,7 @@ package com.furniture.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 
 @Entity
@@ -17,6 +18,8 @@ public class Payment {
 	private Float paymentAmount;
 	private String method;
 	private String email;
+
+
 
 	public String getEmail() {
 		return email;
@@ -46,9 +49,12 @@ public class Payment {
 
 	public void setMethod(String method) { this.method = method; }
 
+
+
 	@Override
 	public String toString() {
 		return  "\n thank you for purchasing from WOODO \n Your total Purchasing cost" +
+				",\n paymentId=" + paymentId +
 				",\n paymentAmount=" + paymentAmount +
 				",\n method='" + method ;
 	}

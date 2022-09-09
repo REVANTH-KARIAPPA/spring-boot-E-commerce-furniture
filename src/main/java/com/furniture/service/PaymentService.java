@@ -7,7 +7,7 @@ import com.furniture.exception.PaymentNotFoundException;
 import com.furniture.model.Payment;
 
 public interface PaymentService {
-	public Payment addPayment(Payment payment,int pid);
+	public Payment addPayment(Payment payment,int pid,int orderId);
 	public boolean deletePaymentById(Integer paymentId);
 	public List<Payment> getAllPaymentDetails();
 	Payment removePayment(long id) throws PaymentNotFoundException;
