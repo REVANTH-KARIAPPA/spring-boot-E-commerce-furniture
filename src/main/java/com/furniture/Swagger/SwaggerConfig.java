@@ -53,7 +53,7 @@ public class SwaggerConfig {
                 .contact(new Contact("Revanth Kariappa", "https://github.com/REVANTH-KARIAPPA", "revanthkariappa4@gmail.com"))
                 .build();
     }
-    private SecurityContext securityContext(){
+    private SecurityContext securityContext() {
         return SecurityContext.builder().securityReferences(defaultAuth()).build();
     }
 

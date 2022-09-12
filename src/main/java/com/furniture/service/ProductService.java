@@ -31,6 +31,10 @@ public class ProductService {
     @Autowired
     PaymentRepository paymentRepository;
 
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository=productRepository;
+    }
+
     public void updateProduct(Product product, int id){
         Product optionalProduct= getProductById(id);
         Product myProduct=optionalProduct;
@@ -43,16 +47,17 @@ public class ProductService {
 
     public void deleteProduct(int id)
     {
-        Optional<Product> product = productRepository.findById(id);
-        if(product.isPresent()){
-            Product dleProduct=productRepository.findById(id).get();
-
-            productRepository.deleteById(id);
-
-        }
-        else {
-            throw new ProductNotFoundException("Product with productId "+id+"\n is not found");
-        }
+//        Optional<Product> product = productRepository.findById(id);
+//        if(product.isPresent()){
+//            Product dleProduct=productRepository.findById(id).get();
+//
+//            productRepository.deleteById(id);
+//
+//        }
+//        else {
+//            throw new ProductNotFoundException("Product with productId "+id+"\n is not found");
+//        }
+        productRepository.deleteById(id);
     }
     public ArrayList<Product> getAllProducts(){
         return new ArrayList<>(productRepository.findAll());
@@ -98,9 +103,9 @@ public class ProductService {
             throw new ProductNotFoundException("User with UserId "+userId+" is not found");
         }
     }
-    public void createProduct(Product product){
+    public Product createProduct(Product product){
 
-        productRepository.save(product);
+        return productRepository.save(product);
 
 
     }

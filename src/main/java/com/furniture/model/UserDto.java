@@ -1,9 +1,25 @@
 package com.furniture.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 public class UserDto {
-    
+    @NotBlank(message="username can not be Blank")
+    @NotNull(message="username can not be null")
     private String username;
+    @Size(min=4,message="password should be more then 4 letters")
     private String password;
+    @Email(message="Please provide a valid email address")
     private String email;
     private String phone;
     private String name;

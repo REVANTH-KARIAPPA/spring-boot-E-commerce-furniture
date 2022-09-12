@@ -1,13 +1,22 @@
 package com.furniture.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 @Entity
 @Data
+
 public class  Product {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -30,7 +39,6 @@ public class  Product {
 
 
     private Boolean approved=false;
-
 
 
 
