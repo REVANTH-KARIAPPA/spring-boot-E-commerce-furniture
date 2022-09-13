@@ -4,18 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 
 public class UserDto {
+    @Pattern(regexp="^[A-Za-z]*$",message = "only alphabets")
     @NotBlank(message="username can not be Blank")
     @NotNull(message="username can not be null")
+    @Size(max=10,message="username max 10 letters")
     private String username;
     @Size(min=4,message="password should be more then 4 letters")
     private String password;
