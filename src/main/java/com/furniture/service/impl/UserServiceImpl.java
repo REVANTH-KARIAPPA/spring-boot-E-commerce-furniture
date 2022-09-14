@@ -133,7 +133,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             userRepository.deleteById(id);
         }
         else{
-            throw new UserNotFoundException("Delete Operation failed \n No User Found with id : "+id);
+            throw new UserNotFoundException(" Delete  Operation failed  \n No User Found with id : "+id);
         }
     }
     public void createUser(User user){

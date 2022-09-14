@@ -12,7 +12,7 @@
 	<artifactId>spring-role-jwt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-role-jwt</name>
-	<description>A Spring Boot Project User Management Project with JWT and Role based API Access</description>
+	<description>A Spring Boot Project for E-Commerce Web Application</description>
 
 	<properties>
 		<java.version>11</java.version>
