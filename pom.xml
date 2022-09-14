@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.akhianand</groupId>
-	<artifactId>spring-role-jwt</artifactId>
+	<artifactId>spring-boot-E-Commerce-Furniture</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-role-jwt</name>
 	<description>A Spring Boot Project for E-Commerce Web Application</description>
