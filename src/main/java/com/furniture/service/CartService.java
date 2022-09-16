@@ -75,7 +75,7 @@ public class CartService {
             return  products;
         }
         else {
-            throw new UserNotFoundException("User "+userId+" is not found");
+            throw new UserNotFoundException("User "+userId+" is not  found");
         }
     }
 }
