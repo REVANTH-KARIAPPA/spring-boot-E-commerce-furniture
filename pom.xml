@@ -11,7 +11,7 @@
 	<groupId>com.akhianand</groupId>
 	<artifactId>spring-boot-E-Commerce-Furniture</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-role-jwt</name>
+	<name>spring-boot-E-Commerce-Furniture</name>
 	<description>A Spring Boot Project for E-Commerce Web Application</description>
 
 	<properties>
@@ -80,18 +80,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
