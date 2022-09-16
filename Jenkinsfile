@@ -1,5 +1,7 @@
 pipeline {
     agent any
+
+    stages {
         stage('Compile') {
             steps {
                 echo 'Compile'
@@ -27,7 +29,7 @@ pipeline {
 
              }
         }
-        stage('Deploy') {
+        stage('Depoly') {
             steps {
                 echo 'Deploy'
             withEnv(['JENKINS_NODE_COOKIE=dontKillMe']){
