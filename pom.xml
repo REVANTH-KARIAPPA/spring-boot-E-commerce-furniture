@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.akhianand</groupId>
-	<artifactId>spring-boot-E-Commerce-Furniture</artifactId>
+	<artifactId>spring-boot-e-commerce-furniture</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-E-Commerce-Furniture</name>
+	<name>spring-boot-e-commerce-furniture</name>
 	<description>A Spring Boot Project for E-Commerce Web Application</description>
 
 	<properties>
@@ -48,6 +48,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -120,6 +125,7 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<finalName>spring-boot-e-commerce-furniture</finalName>
 	</build>
 
 </project>

@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest()
 public class SpringFurnitureApplicationTests {
-    @Test
-    void contextLoads(){
-
-    }
+//    @Test
+//    void contextLoads(){
+//
+//    }
 }

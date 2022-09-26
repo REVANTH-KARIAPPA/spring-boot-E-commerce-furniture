@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo 'Deploy'
             withEnv(['JENKINS_NODE_COOKIE=dontKillMe']){
-               bat 'start/min java -jar target/spring-boot-E-Commerce-Furniture-0.0.1-SNAPSHOT.jar'
+               bat 'start/min java -jar target/spring-boot-e-commerce-furniture.jar'
                 }
 
             }
