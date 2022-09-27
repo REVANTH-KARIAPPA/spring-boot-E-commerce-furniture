@@ -42,35 +42,35 @@ class ProductServiceTest {
     private Product product;
 
 
-//    @BeforeEach
-//    void setUp() {
-//        //this.productService=new ProductService(this.productRepository);
-//
-//        product=Product.builder()
-//                .productId(5)
-//                .approved(false)
-//                .prize(199)
-//                .img("new img")
-//                .productName("new Product")
-//                .build();
-//    }
-//
-//    @Test
-//    void getAllProducts() {
-//        productService.getAllProducts();
-//        verify(productRepository).findAll();
-//
-//    }
-//    @Test
-//    void testCreateProduct(){
-//
-//
-//
-//        Mockito.when(productRepository.save(product)).thenReturn(product);
-//
-//        assertThat(productService.createProduct(product)).isEqualTo(product);
-//
-//    }
+    @BeforeEach
+    void setUp() {
+        //this.productService=new ProductService(this.productRepository);
+
+        product=Product.builder()
+                .productId(5)
+                .approved(false)
+                .prize(199)
+                .img("new img")
+                .productName("new Product")
+                .build();
+    }
+
+    @Test
+    void getAllProducts() {
+        productService.getAllProducts();
+        verify(productRepository).findAll();
+
+    }
+    @Test
+    void testCreateProduct(){
+
+
+
+        Mockito.when(productRepository.save(product)).thenReturn(product);
+
+        assertThat(productService.createProduct(product)).isEqualTo(product);
+
+    }
 //    @Test
 //    void testDeleteProduct(){
 //        Product product =  new Product();
@@ -84,16 +84,16 @@ class ProductServiceTest {
 //        assertFalse(productRepository.exists(product.getProductId()));
 //    }
 
-    //JUnit  test for delete Product method
-//    @DisplayName("JUnit test for deleteEmployee method")
-//    @Test
-//    public void deleteProductById(){
-//        int productId=1;
-//        willDoNothing().given(productRepository).deleteById(productId);
-//         productService.deleteProduct(productId);
-//
-//         verify(productRepository,times(1)).deleteById(productId);
-//    }
+   // JUnit  test for delete Product method
+    @DisplayName("JUnit test for deleteEmployee method")
+    @Test
+    public void deleteProductById(){
+        int productId=1;
+        willDoNothing().given(productRepository).deleteById(productId);
+         productService.deleteProduct(productId);
+
+         verify(productRepository,times(1)).deleteById(productId);
+    }
 
 
 }
